@@ -1,0 +1,47 @@
+<form [formGroup]="formEmployee" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="Nom">Nom Employee</label>
+        <input [ngClass]="{'is-invalid': submitted && f['employeeFirstName'].errors}"
+            formControlName="employeeFirstName" class="form-control" type="text">
+        <div *ngIf="f['employeeFirstName'].errors" class="invalid-feedback">
+            <div *ngIf="f['employeeFirstName'].errors['required']">
+                <i>Le nom est obligatoire</i>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="PreNom">Prénom</label>
+        <input [ngClass]="{'is-invalid': submitted && f['employeeLastName'].errors}" formControlName="employeeLastName"
+            class="form-control" type="text">
+            <div *ngIf="f['employeeLastName'].errors" class="invalid-feedback">
+                <div *ngIf="f['employeeLastName'].errors['required']">
+                    <i>Le prenom est obligatoire</i>
+                </div>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="Nom">Numéro de téléphone</label>
+        <input [ngClass]="{'is-invalid': submitted && f['employeePhone'].errors}" formControlName="employeePhone"
+            class="form-control" type="text">
+            <div *ngIf="f['employeePhone'].errors" class="invalid-feedback">
+                <div *ngIf="f['employeePhone'].errors['required']">
+                    <i>Le phone est obligatoire</i>
+                </div>
+            </div>
+    </div>
+    <div class="form-group">
+        <label for="Département">Département</label>
+        <select [ngClass]="{'is-invalid': submitted && f['departementId'].errors}" formControlName="departementId"
+            class="form-control" name="departement" id="departement">
+            <option *ngFor="let d of listDepartements" value="{{d?.id}}">{{d?.departementName}}</option>
+        </select>
+        <div *ngIf="f['departementId'].errors" class="invalid-feedback">
+            <div *ngIf="f['departementId'].errors['required']">
+                <i>Le departement est obligatoire</i>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-outline-success mt-2">Envoyer</button>
+    </div>
+</form>
